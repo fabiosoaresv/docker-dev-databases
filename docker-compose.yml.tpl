@@ -5,7 +5,7 @@ services:
     image: postgres:9.6.10
     volumes:
       - './data/postgres:/var/lib/postgresql/data/pgdata'
-      - '~/autoseg:/app/autoseg'
+      - '~/your_path:/app/your_path'
     ports:
       - "5432:5432"
     restart: always
@@ -16,8 +16,8 @@ services:
     image: mariadb:10.0.35
     volumes:
       - './data/mysql:/var/lib/mysql'
+       - '~/your_path:/app/your_path'
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-

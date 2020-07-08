@@ -9,16 +9,42 @@ In project path's, make this command:
 
 `cp docker-compose.yml.tpl docker-compose.yml`
 
+Choice the path that you made clone the projet, and set it in the volume `docker-compose.yml`
+For example:
+```
+    volumes:
+      - './data/postgres:/var/lib/postgresql/data/pgdata'
+      - '~/fabio_soares:/app/fabio_soares'
+```
 
-# Alias úteis
+# Alias
 
 ```bash
 alias dc="docker-compose"
 alias dce="dc exec"
-alias dcu="dc up -d"
-alias dcs="dc stop"
+alias dcu="dc -f /path/docker-dev-databases/docker-compose.yml up -d"
+alias dcs1="docker stop docker-dev-databases_postgres_1"
+alias dcs2="docker stop docker-dev-databases_mysql_1"
 alias dcd="dc down"
-alias dcl="dc logs"
+alias dclogs="dc logs"
+alias dcls="docker container ls -a"
+alias bash_psql="cd /path/docker-dev-databases && dce postgres sh"
+alias bash_mysql="cd /path/docker-dev-databases && dce mysql sh"
+alias dcd="dc down"
+alias dclogs="dc logs"
+
+```
+## Making restore database
+First, move the dump for you path that you choice in innitial configuration.
+```
+  bash_psql -c 'psql -U postgres -d database < /app/your_path/docker-dev-databases/data/postgres/ database.psql'
+  bash_mysql -c 'mysql -uroot -d database < /app/your_path/docker-dev-databases/data/mysql/database.sql'
+```
+
+Examples (for mysql change the command to bash_mysql and set command restore in mysql):
+```
+  mv ~/Documents/database.psq ~/fabio_soares/docker-dev-databases/data/postgres/
+  bash_psql -c 'psql -U postgres -d database < /app/fabio_soares/docker-dev-databases/data/postgres/ database.psql'
 ```
 
 ## Basic commands
