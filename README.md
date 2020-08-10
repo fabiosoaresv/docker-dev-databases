@@ -77,3 +77,11 @@ With alias: `dcd`
 
 ### Removing images:
 `docker rmi postgres:9.6.10`
+
+### Note
+If you use O.S MacOs, you need to install "lib" PostgreSQL, and make the symbolic link, follow the step's:
+```console
+$ brew install postgresql
+$ launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+$ ln -s /Library/PostgreSQL/12/lib/libpq.5.12.dylib /usr/lib/libpq.5.dylib
+```
