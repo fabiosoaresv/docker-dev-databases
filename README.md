@@ -35,16 +35,14 @@ alias dclogs="dc logs"
 
 ```
 ## Making restore database
-First, move the dump for you path that you choice in initial configuration.
-```
-  bash_psql -c 'psql -U postgres -d database < /app/your_path/docker-dev-databases/data/postgres/ database.psql'
-  bash_mysql -c 'mysql -uroot -d database < /app/your_path/docker-dev-databases/data/mysql/database.sql'
+Postgres:
+```console
+$ cat database_dump.psql | docker exec -i docker-dev-databases_postgres_1 psql -U postgres project_development
 ```
 
-Examples (for mysql change the command to bash_mysql and set command restore in mysql):
-```
-  mv ~/Documents/database.psq ~/fabio_soares/docker-dev-databases/data/postgres/
-  bash_psql -c 'psql -U postgres -d database < /app/fabio_soares/docker-dev-databases/data/postgres/ database.psql'
+MySql
+```console
+$ cat database_dump.sql | docker exec -i docker-dev-databases_mysql_1 mysql -uroot -d database
 ```
 
 ## Basic commands
